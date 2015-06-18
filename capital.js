@@ -4,10 +4,8 @@
        var title = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
         var unit = ['十', '百', '千', '万', '亿'];
         var prepare = {'20' : '二十','30' : '三十', '40' : '四十','50' : '五十','60' : '六十','70' : '七十','80' : '八十','90' : '九十','100' : '一百'};
-        var className = ['medal first', 'medal second', 'medal third', 'medal_none'];
         var result = {
-            title: '',
-            className: 'medal_none'
+            title: ''
         };
         var item = [];
         var indexArr = index.toString().split('').reverse();
@@ -36,7 +34,6 @@
             item = prepare[index + 1];
         }
         result['title'] = item;
-        result['className'] = className[index] || className[className.length - 1];
 
         result['title'] = '第' +  result['title'] + '名';
         return result;
