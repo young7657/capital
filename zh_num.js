@@ -1,12 +1,10 @@
 /**依赖jquery*/
 (function($) {
-    $.capital = function(option) {
-       var title = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
-        var unit = ['十', '百', '千', '万', '亿'];
+    var Cnum = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+    var Unit = ['十', '百', '千', '万', '亿'];
+    $.zh_num = function(num) {
         var prepare = {'20' : '二十','30' : '三十', '40' : '四十','50' : '五十','60' : '六十','70' : '七十','80' : '八十','90' : '九十','100' : '一百'};
-        var result = {
-            title: ''
-        };
+
         var item = [];
         var indexArr = index.toString().split('').reverse();
         var len = indexArr.length;
