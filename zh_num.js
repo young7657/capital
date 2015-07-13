@@ -6,8 +6,6 @@
 
     function getNum(N, cheng, weishu) {
         var num = N.splice(0, 4);
-        num = +num.reverse().join('');
-        num = num.toString().split('').reverse();
         var l = num.length;
         var pre = '';
         var result = '';
@@ -35,7 +33,7 @@
         if (result == '') {
             exunit = '';
         }
-        if (result == '零' && +weishu.join('')) {
+        if (!result && +weishu.join('') && weishu[3] != 0) {
             result = '零';
         } else{
             result = result + exunit;
