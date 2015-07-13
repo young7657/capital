@@ -5,10 +5,9 @@
     var EXUNIT = ['', '万', '亿'];
 
     function getNum(N, cheng, weishu) {
-      console.log(N);
-      console.log(cheng);
-      console.log(weishu);
         var num = N.splice(0, 4);
+        num = +num.reverse().join('');
+        num = num.toString().split('').reverse();
         var l = num.length;
         var pre = '';
         var result = '';
@@ -36,9 +35,10 @@
         if (result == '') {
             exunit = '';
         }
-        result = result + exunit;
-        if (!result && +weishu.join('')) {
+        if (result == '零' && +weishu.join('')) {
             result = '零';
+        } else{
+            result = result + exunit;
         }
         return child + result;
     }
@@ -53,3 +53,7 @@
     };
 
 })(jQuery);
+
+
+
+$.zh_num(10000000001);
