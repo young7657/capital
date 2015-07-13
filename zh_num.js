@@ -6,20 +6,19 @@
     $.zh_num = function(num) {
         var result = '';
         //数字翻转遍历时可以适配对应单位
-        num = (+num).toString().split('').reverse();
+        num = (+num || 0).toString().split('').reverse();
 
         var l = num.length;
         var pre = '';
         for(var i = l - 1; i >= 0; i--) {
             var unit = UNIT[i];
             var n = +num[i];
-            var cn = CNUM[n];
+            var cn = ((2 === l) && (l - 1 === i ) && (1 === n)) ? '' : CNUM[n];
             //判断如果为0则缓存零值，直到遇到下一位不是零的数
-            if (n === 0) {
+            if (0 === n && 1 !== l) {
                 pre = cn;
                 continue;
             }
-
             result += pre + cn + unit;
             //缓存的零只能用一次
             pre = '';
