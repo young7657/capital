@@ -1,26 +1,34 @@
 function getChinaNumber (num) {
-  const CNUM = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十']
+  const NUM = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十']
   const UNIT = ['', '十', '百', '千']
   const EXUNIT = ['万', '亿']
 
   num = parseInt(num, 10)
 
-// @todo每个数的显示方式和自己的位置有关也与上下的位置有关，
-// 方式是记录当前值，当处理下一位数时再判断上一个值如何显示
-  // let res = num.toString().replace(/\d/g, function (match, offset, string) {
-  //   let unit = (string.length - 1) - offset
-  //   console.log(match, unit, unit % 4, UNIT[unit % 4], unit % 4 === 0 ? EXUNIT[((unit / 4) - 1) % 2] : '')
-  //   let n = (match == 0 && unit % 4 ==0 ? '' : CNUM[match])
-  //   let u = (match == 0 ? '' : UNIT[unit % 4])
-  //   let exu = ((unit % 4 === 0 ? EXUNIT[((unit / 4) - 1) % 2] : '') || '')
-  //   return n + u + exu
-  // })
-  // res = res.replace(/零.*零/ig, function (match, offset) {
-  //   return match.replace(/零+/g, '零').replace(/^零/, '')
-  // })
-
   let res = []
-  num = num.toString().split('').reverse().join('')
+  num = num.toString().split('').reverse()
+  let arr = num.toString().split('').reverse()
+  let chunk = []
+  let temp = []
+  for (let i = 0; i < arr.length; i++) {
+    temp.push(arr[i])
+
+    if ((i !== 0 && (i + 1) % 4 === 0) || i === arr.length - 1) {
+      chunk.push(temp)
+      temp = []
+    }
+  }
+  let res = ''
+  for (let i = 0; i < chunk.length; i++) {
+    let temp = ''
+    for (let j = 0; j < chunk[i].length; j++) {
+      temp = CNUM[chunk[i][j]] + UNIT[j] + temp
+    }
+    temp += EXUNIT[i]
+
+    res = temp + res
+  }
+
   num.replace(/\d{1,4}/g, (match, offset, string) => {
     n = match.split('').reverse().join('')
     n = parseInt(n, 10)
