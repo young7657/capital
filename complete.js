@@ -22,7 +22,7 @@ function getZhNum (num) {
     }
     
     // 添加正则矫正
-    temp = temp.replace(/零+/g, '零').replace(/零$/, '')
+    temp = temp.replace(/零+/g, '零').replace(/零$/, '').replace(/^一十/, '十')
     
     // 添加块的单位
     if (cu >= 1) {
